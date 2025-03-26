@@ -15,7 +15,7 @@ COPY .mvn/ .mvn/
 COPY pom.xml pom.xml
 
 # Cache dependencies
-RUN --mount=type=cache,id=s/5c34c2e3-26da-4eef-8161-fe29c3a700b8-/root/.m2,target=/root/.m2 ./mvnw dependency:go-offline -DskipTests
+RUN --mount=type=cache,id=s/a9aa0018-ac34-43fc-bee4-e64535636d0d-/root/.m2,target=/root/.m2 ./mvnw dependency:go-offline -DskipTests
 
 ################################################################################
 # Stage 2: Build Application
@@ -27,7 +27,7 @@ WORKDIR /build
 COPY src src/
 
 # Build application
-RUN --mount=type=cache,id=s/5c34c2e3-26da-4eef-8161-fe29c3a700b8-/root/.m2,target=/root/.m2 \
+RUN --mount=type=cache,id=s/a9aa0018-ac34-43fc-bee4-e64535636d0d-/root/.m2,target=/root/.m2 \
     ./mvnw package -DskipTests && \
     mv target/*.jar target/app.jar
 
