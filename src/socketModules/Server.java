@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 import exercises.Exercise1;
 import exercises.Exercise2;
@@ -17,7 +16,7 @@ import exercises.Exercise6;
 public class Server {
 	public static String PrintMenu() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\nDANH SÁCH BÀI TẬP:\n");
+		sb.append("\nPham Thanh Hieu DANH SÁCH BÀI TẬP:\n");
 		sb.append("1. Kiểm tra số nguyên tố, chính phương, hoàn hảo, amstrong.\n");
 		sb.append("2. Tính tổng và tích các chữ số của số nguyên dương.\n");
 		sb.append("3. Tìm ước chung lớn nhất và bội chung nhỏ nhất của hai số nguyên dương.\n");
@@ -92,7 +91,7 @@ public class Server {
 		try {
 			String menu = "";
 			ServerSocket server = new ServerSocket(2025);
-			System.out.println("Server has started!...");
+			System.out.println("Pham Thanh Hieu: Server has started!...");
 			Socket client = server.accept();
 			DataInputStream dis = new DataInputStream(client.getInputStream());
 			DataOutputStream dos = new DataOutputStream(client.getOutputStream());
