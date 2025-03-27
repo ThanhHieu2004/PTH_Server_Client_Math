@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Exercise5 {
-	public Exercise5() {}
-	
+	public Exercise5() {
+	}
+
 	public Exercise5(DataOutputStream dos) {
 		try {
 			dos.writeUTF("Nhap 1 chuoi: ");
@@ -14,9 +15,9 @@ public class Exercise5 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public String solve(String input) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\nChuoi dao nguoc: " + new StringBuilder(input).reverse());
@@ -28,11 +29,18 @@ public class Exercise5 {
 		return sb.toString();
 	}
 
-	public static String swapCase(String s) {
+	public static String swapCase(String str) {
 		StringBuilder result = new StringBuilder();
-		for (char c : s.toCharArray()) {
-			result.append(Character.isUpperCase(c) ? Character.toLowerCase(c) : Character.toUpperCase(c));
+
+		for (int i = 0; i < str.length(); i++) {
+			char ch = str.charAt(i);
+			if (i % 2 == 0) {
+				result.append(Character.toUpperCase(ch)); // Uppercase for even indices
+			} else {
+				result.append(Character.toLowerCase(ch)); // Lowercase for odd indices
+			}
 		}
+
 		return result.toString();
 	}
 

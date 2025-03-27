@@ -6,17 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-import exercises.Exercise1;
-import exercises.Exercise2;
-import exercises.Exercise3;
-import exercises.Exercise4;
-import exercises.Exercise5;
-import exercises.Exercise6;
-
 public class Client {
-	
-	
-	
 
 	public static void main(String[] args) {
 		Socket client;
@@ -29,7 +19,7 @@ public class Client {
 			// int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
 			// client = new Socket(host, port);
 			client = new Socket("hopper.proxy.rlwy.net", 32418);
-			DataInputStream dis = new DataInputStream(client.getInputStream()); 
+			DataInputStream dis = new DataInputStream(client.getInputStream());
 			DataOutputStream dos = new DataOutputStream(client.getOutputStream());
 			Scanner sc = new Scanner(System.in);
 			int chonBaiTap = -1;
@@ -50,14 +40,19 @@ public class Client {
 					input = sc.nextLine();
 					dos.writeUTF(input);
 					// Since ex3 requires 2 args
-					if (chonBaiTap == 3){
+					if (chonBaiTap == 3) {
 						input2 = sc.nextLine();
 						dos.writeUTF(input2);
+					}
+					if (chonBaiTap == 0) {
+					    System.out.println("Exiting client...");
+					    client.close();
+					    System.exit(0);
 					}
 					// get server response
 					String response = dis.readUTF();
 					System.out.println(response);
-					
+
 				} catch (Exception e) {
 					System.out.println("Lựa chọn không hợp lệ!");
 					e.printStackTrace();
