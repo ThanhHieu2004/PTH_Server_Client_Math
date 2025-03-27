@@ -27,7 +27,8 @@ public class Client {
 //			client = new Socket("localhost", 2025);
 			String host = "pthserverclientmath-production.up.railway.app";
 			int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
-			client = new Socket(host, port);
+			// client = new Socket(host, port);
+			client = new Socket("pthserverclientmath-production.up.railway.app", 8080);
 			DataInputStream dis = new DataInputStream(client.getInputStream()); 
 			DataOutputStream dos = new DataOutputStream(client.getOutputStream());
 			Scanner sc = new Scanner(System.in);

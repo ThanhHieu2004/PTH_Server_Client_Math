@@ -35,6 +35,12 @@ RUN --mount=type=cache,id=s/a9aa0018-ac34-43fc-bee4-e64535636d0d-/root/.m2,targe
 # Stage 3: Run Application
 FROM eclipse-temurin:21-jre-jammy AS final
 
+# Install ngrok
+RUN apt update && apt install -y curl && \
+    curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc && \
+    echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && \
+    apt update && apt install -y ngrok
+
 # Create a non-privileged user
 ARG UID=10001
 RUN adduser \
