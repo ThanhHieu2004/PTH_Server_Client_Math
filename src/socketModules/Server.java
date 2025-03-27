@@ -56,7 +56,7 @@ public class Server {
 		}
 	}
 
-	public static String ThucHienBaiTap(int choice, String ... value) {
+	public static String ThucHienBaiTap(int choice, String... value) {
 		String result = "If this one doesn't change, sth wrong";
 		switch (choice) {
 		case 1:
@@ -90,7 +90,7 @@ public class Server {
 	public static void main(String[] args) {
 		try {
 			String menu = "";
-			int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "2025")); 
+			int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "2025"));
 			ServerSocket server = new ServerSocket(port);
 			System.out.println("Pham Thanh Hieu: Server has started on port: " + port);
 			Socket client = server.accept();
@@ -98,25 +98,45 @@ public class Server {
 			DataOutputStream dos = new DataOutputStream(client.getOutputStream());
 			int choice = -1;
 			while (true) {
-				menu = PrintMenu();
-				// Send menu to client
-				dos.writeUTF(menu);
-				dos.flush();
-				// Read choice from client
-				choice = dis.readInt();
-				inLenhBaiTap(choice, dos);
-				// Read input here
-				String input = dis.readUTF();
-				String input2 = "";
-				if (choice == 3) {
-					input2 = dis.readUTF();
+				try {
+					menu = PrintMenu();
+					// Send menu to client
+					dos.writeUTF(menu);
+					dos.flush();
+					// Read choice from client
+					choice = dis.readInt();
+					if (choice == 0) {
+						System.out.println("Client disconnected.");
+						break; // Exit the loop when client exits
+					}
+					inLenhBaiTap(choice, dos);
+					// Read input here
+					String input = dis.readUTF();
+					String input2 = "";
+					if (choice == 3) {
+						input2 = dis.readUTF();
+					}
+					String result = ThucHienBaiTap(choice, input, input2);
+					dos.writeUTF(result);
+				} catch (IOException e) {
+					System.out.println("Client disconnected. Closing connection...");
+			        break; // Exit the loop if the client disconnects unexpectedly
 				}
-				String result = ThucHienBaiTap(choice, input, input2);
-				dos.writeUTF(result);
+			}
+			try {
+				dis.close();
+				dos.close();
+				client.close();
+				server.close();
+			} catch (IOException e) {
+				System.out.println("Close all server, client.. Goodbye!");
+				e.printStackTrace();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("Client disconnected. Closing connection...");
 			e.printStackTrace();
 		}
+
 	}
 }

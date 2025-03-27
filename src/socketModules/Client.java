@@ -14,7 +14,7 @@ public class Client {
 		String ex_prompt = "";
 		String input, input2;
 		try {
-			// client = new Socket("localhost", 2025);
+//			 client = new Socket("localhost", 2025);
 			// String host = "pthserverclientmath-production.up.railway.app";
 			// int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
 			// client = new Socket(host, port);
@@ -48,14 +48,16 @@ public class Client {
 					    System.out.println("Exiting client...");
 					    client.close();
 					    System.exit(0);
+					    break;
 					}
 					// get server response
 					String response = dis.readUTF();
 					System.out.println(response);
 
 				} catch (Exception e) {
-					System.out.println("Lựa chọn không hợp lệ!");
-					e.printStackTrace();
+					System.out.println("End program client!");
+//					e.printStackTrace();
+					break;
 				}
 			}
 		} catch (IOException e) {
