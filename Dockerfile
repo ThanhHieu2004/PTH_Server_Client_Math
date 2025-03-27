@@ -51,7 +51,7 @@ USER appuser
 COPY --from=package /build/target/app.jar app.jar
 
 # Expose the application port
-# EXPOSE 2025
+EXPOSE 2025
 
 # Run the application
 ENTRYPOINT [ "java", "-jar", "app.jar" ]

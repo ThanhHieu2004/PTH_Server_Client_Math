@@ -52,7 +52,7 @@ public class Server {
 			System.out.println("Thoat chuong trinh...\n");
 			break;
 		default:
-			System.out.println("Lựa chọn không hợp lệ!\n");
+			System.out.println("Lựa chọn in bài tập không hợp lệ!\n");
 		}
 	}
 
