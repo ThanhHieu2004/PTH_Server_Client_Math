@@ -24,7 +24,7 @@ public class Exercise6 {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\nTừ:");
 		for (String word : input.split("\\s+")) {
-			sb.append("\nword");
+			sb.append("\n" + word);
 		}
 		sb.append("\nTần số xuất hiện:");
 		Map<Character, Integer> frequency = new TreeMap<>();
