@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class TestTuan {
     public static void main(String[] args) throws UnknownHostException, IOException {
         Scanner sc = new Scanner(System.in);
-        Socket socket = new Socket("192.168.2.64", 2025);
+        Socket socket = new Socket("192.168.2.17", 2025);
         DataInputStream din = new DataInputStream(socket.getInputStream());
         DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
