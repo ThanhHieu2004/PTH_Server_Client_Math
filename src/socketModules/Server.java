@@ -90,8 +90,9 @@ public class Server {
 	public static void main(String[] args) {
 		try {
 			String menu = "";
-			ServerSocket server = new ServerSocket(2025);
-			System.out.println("Pham Thanh Hieu: Server has started!...");
+			int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "2025")); 
+			ServerSocket server = new ServerSocket(port);
+			System.out.println("Pham Thanh Hieu: Server has started on port: " + port);
 			Socket client = server.accept();
 			DataInputStream dis = new DataInputStream(client.getInputStream());
 			DataOutputStream dos = new DataOutputStream(client.getOutputStream());
